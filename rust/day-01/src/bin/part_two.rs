@@ -7,12 +7,7 @@ fn main() {
 }
 
 fn part_two(input: &str) -> u32 {
-    let output = input
-        .lines()
-        .map(|line| {
-            parse_line(line)
-        })
-        .sum::<u32>();
+    let output = input.lines().map(|line| parse_line(line)).sum::<u32>();
 
     output
 }
@@ -30,7 +25,7 @@ fn parse_line(line: &str) -> u32 {
         ("nine", 9), ("9", 9),
     ]);
 
-    let mut ite = (0..line.len()).filter_map(|idx| {
+    let mut line_iterator = (0..line.len()).filter_map(|idx| {
         let substring = &line[idx..];
         let mut val = None;
 
@@ -44,8 +39,8 @@ fn parse_line(line: &str) -> u32 {
         val
     });
 
-    let first = ite.next().unwrap();
-    let last = match ite.last() {
+    let first = line_iterator.next().unwrap();
+    let last = match line_iterator.last() {
         Some(digit) => digit,
         None => first,
     };
@@ -61,14 +56,15 @@ mod tests {
 
     #[test]
     fn test_part_two() {
-        let result = part_two("two1nine
+        let result = part_two(
+            "two1nine
 eightwothree
 abcone2threexyz
 xtwone3four
 4nineeightseven2
 zoneight234
-7pqrstsixteen");
+7pqrstsixteen",
+        );
         assert_eq!(result, 281)
     }
-
 }

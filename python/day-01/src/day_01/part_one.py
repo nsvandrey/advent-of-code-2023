@@ -1,9 +1,10 @@
 from typing import List
 
+
 def read_input(fp: str) -> List[str]:
     with open(fp, "r") as file:
         return [line.strip() for line in file.readlines()]
-    
+
 
 def part_one(input: List[str]) -> int:
     output = 0

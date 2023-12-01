@@ -12,10 +12,11 @@ DIGIT_MAP: Dict[str, str] = {
     "nine": "9", "9": "9",
 }
 
+
 def read_input(fp: str) -> List[str]:
     with open(fp, "r") as file:
         return [line.strip() for line in file.readlines()]
-    
+
 
 def part_two(input: List[str]) -> int:
     output = 0
@@ -23,12 +24,13 @@ def part_two(input: List[str]) -> int:
         digit_idxs = []
         for digit in DIGIT_MAP.keys():
             digit_idxs += parse_line(line, digit)
-    
+
         digit_idxs = sorted(digit_idxs, key=lambda x: x[0])
         calibration = int(digit_idxs[0][1] + digit_idxs[-1][1])
         output += calibration
-    
+
     return output
+
 
 def parse_line(line: str, digit: str) -> List[Tuple[int, int]]:
     digit_idxs = []
@@ -42,6 +44,7 @@ def parse_line(line: str, digit: str) -> List[Tuple[int, int]]:
             break
 
     return digit_idxs
+
 
 def main():
     input = read_input("input.txt")
